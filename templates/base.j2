@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+   <title>{% block title %}Home{% endblock %}</title>
+  <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+
+<div class="container">
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for message in messages %}
+
+        {% if "Error" not in message[1]: %}
+          <div class="alert alert-info">
+            <strong>Success! </strong> {{ message[1] }}
+          </div>
+        {% endif %}
+
+        {% if "Error" in message[1]: %}
+          <div class="alert alert-warning">
+            { { message[1] }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+{% block content %}
+None
+{% endblock %}
+
+</div>
+
+</body>
+</html>
